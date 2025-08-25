@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from './ui/button';
 import { Card } from './ui/card';
 import { Separator } from './ui/separator';
@@ -73,6 +73,8 @@ export default function BaguetteInteractive() {
   const [isExploded, setIsExploded] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hoveredIngredient, setHoveredIngredient] = useState<string | null>(null);
+  const explodeSoundRef = useRef<HTMLAudioElement>(null);
+  const collapseSoundRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     // Trigger initial animation
@@ -80,7 +82,21 @@ export default function BaguetteInteractive() {
     return () => clearTimeout(timer);
   }, []);
 
+  const playSound = (soundRef: React.RefObject<HTMLAudioElement>) => {
+    if (soundRef.current) {
+      soundRef.current.currentTime = 0;
+      soundRef.current.play().catch(() => {
+        // Ignore if audio can't play (user hasn't interacted yet)
+      });
+    }
+  };
+
   const toggleBaguette = () => {
+    if (isExploded) {
+      playSound(collapseSoundRef);
+    } else {
+      playSound(explodeSoundRef);
+    }
     setIsExploded(!isExploded);
   };
 
@@ -193,6 +209,20 @@ export default function BaguetteInteractive() {
           </p>
         </Card>
       )}
+
+      {/* Hidden audio elements for sound effects */}
+      <audio 
+        ref={explodeSoundRef} 
+        preload="auto"
+      >
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmBdEkKU3PbdfSwGVpHy8tuXHhEZfrPOp2kmBAA=" type="audio/wav" />
+      </audio>
+      <audio 
+        ref={collapseSoundRef} 
+        preload="auto"
+      >
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmAqBlrxbh4OKNwcBjuL2O7UGgcEVoLq6ZdQEQpAldbgsm8pAjR8yO" type="audio/wav" />
+      </audio>
     </main>
   );
 }
