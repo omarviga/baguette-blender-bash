@@ -30,7 +30,7 @@ const ingredients: Ingredient[] = [
   {
     id: 'tomate',
     name: 'Tomate Fresco',
-    image: tomateImg,
+    image: '/lovable-uploads/5f6754ee-93f1-4647-abc0-ec79199c8c34.png',
     description: 'Rodajas jugosas de tomate maduro',
     color: 'tomato',
     initialDelay: 100
