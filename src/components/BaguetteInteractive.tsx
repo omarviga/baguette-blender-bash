@@ -38,7 +38,7 @@ const ingredients: Ingredient[] = [
   {
     id: 'lechuga',
     name: 'Lechuga Iceberg',
-    image: lechugaImg,
+    image: '/lovable-uploads/5d3f4230-2afc-470a-a65a-dc2feb7ff06a.png',
     description: 'Hojas frescas y crujientes',
     color: 'lettuce',
     initialDelay: 200
@@ -46,7 +46,7 @@ const ingredients: Ingredient[] = [
   {
     id: 'queso',
     name: 'Queso Cheddar',
-    image: quesoImg,
+    image: '/lovable-uploads/807f5c9c-a379-4c95-9217-32bb69a4e783.png',
     description: 'Queso cremoso y derretido',
     color: 'cheese',
     initialDelay: 300
@@ -62,7 +62,7 @@ const ingredients: Ingredient[] = [
   {
     id: 'pan-abajo',
     name: 'Pan Baguette Base',
-    image: panAbajoImg,
+    image: '/lovable-uploads/16863120-fa2b-4849-bbad-1b6dbbbd31fc.png',
     description: 'Base crujiente del baguette',
     color: 'bread',
     initialDelay: 500
