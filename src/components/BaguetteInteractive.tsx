@@ -22,7 +22,7 @@ const ingredients: Ingredient[] = [
   {
     id: 'pan-arriba',
     name: 'Pan Baguette Superior',
-    image: panArribaImg,
+    image: '/lovable-uploads/358067bd-310b-4b59-9dcb-be2e58789192.png',
     description: 'Pan dorado y crujiente por fuera, suave por dentro',
     color: 'bread',
     initialDelay: 0
